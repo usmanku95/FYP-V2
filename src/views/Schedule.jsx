@@ -16,75 +16,75 @@
 
 */
 import React, { Component } from "react";
-import { Grid, Row, Col, Table } from "react-bootstrap";
-import ReactTable from 'react-table-6'
-import 'react-table-6/react-table.css'
+import { Grid, Row } from "react-bootstrap";
+import ReactTable from "react-table-6";
+import "react-table-6/react-table.css";
 
 class Schedule extends Component {
   render() {
-    const data = [{
-        name: 'Tanner Linsley',
+    const data = [
+      {
+        name: "Tanner Linsley",
         age: 26,
-    //     friend: {
-    //       name: 'Jason Maurer',
-    //       age: 23,
-    //     }
-    //   },{
-    
-      }]
-     
-      const columns = [{
-        Header: 'Name',
-        accessor: 'name', // String-based value accessors!,
-        Cell:props => <a href='/user/matches/eventId'>{props.value}</a> // String-based value accessors!
-
+        //     friend: {
+        //       name: 'Jason Maurer',
+        //       age: 23,
+        //     }
+        //   },{
       },
-      
-      {
-        Header: 'Date',
-        accessor: 'name', // String-based value accessors!,
-        Cell:props => <a href='/user/matches/eventId'>{props.value}</a> // String-based value accessors!
+    ];
 
-      }, 
-      
+    const columns = [
       {
-        Header: 'Time',
-        accessor: 'name', // String-based value accessors!,
-        Cell:props => <a href='/user/matches/eventId'>{props.value}</a> // String-based value accessors!
+        Header: "Name",
+        accessor: "name", // String-based value accessors!,
+        Cell: (props) => <a href="/user/matches/eventId">{props.value}</a>, // String-based value accessors!
+      },
 
-      }, 
-      
       {
-        Header: 'Venue',
-        accessor: 'age',
-        Cell: props => <span className='number'>{props.value}</span> // Custom cell components!
+        Header: "Date",
+        accessor: "name", // String-based value accessors!,
+        Cell: (props) => <a href="/user/matches/eventId">{props.value}</a>, // String-based value accessors!
       },
-      true&& {
-        Header: 'Actions',
-        accessor: 'age',
-        Cell: props => <span className='number'><button className='btn btn-sm btn-primary btn-fill'>edit</button> <button className='btn btn-sm btn-danger btn-fill'>delete</button></span> // Custom cell components!
+
+      {
+        Header: "Time",
+        accessor: "name", // String-based value accessors!,
+        Cell: (props) => <a href="/user/matches/eventId">{props.value}</a>, // String-based value accessors!
       },
-    //    {
-    //     id: 'friendName', // Required because our accessor is not a string
-    //     Header: 'Friend Name',
-    //     // accessor: d => d.friend.name // Custom value accessors!
-    //   }, {
-    //     Header: props => <span>Friend Age</span>, // Custom header components!
-    //     accessor: 'friend.age'
-    //   }
-]
-     
-      
+
+      {
+        Header: "Venue",
+        accessor: "age",
+        Cell: (props) => <span className="number">{props.value}</span>, // Custom cell components!
+      },
+      true && {
+        Header: "Actions",
+        accessor: "age",
+        Cell: (props) => (
+          <span className="number">
+            <button className="btn btn-sm btn-primary btn-fill">edit</button>{" "}
+            <button className="btn btn-sm btn-danger btn-fill">delete</button>
+          </span>
+        ), // Custom cell components!
+      },
+      //    {
+      //     id: 'friendName', // Required because our accessor is not a string
+      //     Header: 'Friend Name',
+      //     // accessor: d => d.friend.name // Custom value accessors!
+      //   }, {
+      //     Header: props => <span>Friend Age</span>, // Custom header components!
+      //     accessor: 'friend.age'
+      //   }
+    ];
+
     return (
       <div className="content">
         <Grid fluid>
           <Row>
-          <button className='btn btn-info btn-fill'>+ Add Entry</button>
+            <button className="btn btn-info btn-fill">+ Add Entry</button>
 
-          <ReactTable
-    data={data}
-    columns={columns}
-  />
+            <ReactTable data={data} columns={columns} />
           </Row>
         </Grid>
       </div>

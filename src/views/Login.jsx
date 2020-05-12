@@ -16,56 +16,70 @@
 
 */
 import React from "react";
-import { Grid, Row, Col,  } from "react-bootstrap";
-import 'react-table-6/react-table.css'
+import { Grid, Row, Col } from "react-bootstrap";
+import "react-table-6/react-table.css";
 import Card from "components/Card/Card.jsx";
 import { useForm } from "react-hook-form";
-// class Register extends Component {
-//   render() {
-    export default function Login()
-{
-
+export default function Login() {
   const { register, handleSubmit, watch, errors } = useForm();
-  const onSubmit = data => console.log(data);
-    return (
-      <div className="content">
-        <Grid fluid>
-          <Row>
+  const onSubmit = (data) => console.log(data);
+  return (
+    <div className="content">
+      <Grid fluid>
+        <Row>
           <Card
-                title="Admin Login"
-                // category="Created using Roboto Font Family"
-                content={
-                  <div style={{marginTop:"20px"}}>
-                      <form onSubmit={handleSubmit(onSubmit)}>
+            title="Admin Login"
+            // category="Created using Roboto Font Family"
+            content={
+              <div style={{ marginTop: "20px" }}>
+                <form onSubmit={handleSubmit(onSubmit)}>
                   <Grid fluid>
-                    
                     <Row>
                       <Col md={6}>
-                      <h6> Email: </h6>
-                      <input type="email" name="email" required ref={register({ required: true })} ></input>
-                      {errors.email && <span style={{color:"red"}}>This field is required</span>}
+                        <h6> Email: </h6>
+                        <input
+                          type="email"
+                          name="email"
+                          required
+                          ref={register({ required: true })}
+                        ></input>
+                        {errors.email && (
+                          <span style={{ color: "red" }}>
+                            This field is required
+                          </span>
+                        )}
                       </Col>
                       <Col md={6}>
-                      <h6> Password: </h6>
-                      <input type="password" name="password" ref={register({ required: {value:true,message:'This field is required.'}  })} ></input>
-                {errors.phone && <span style={{color:"red"}}>{errors.phone.message}</span>}
+                        <h6> Password: </h6>
+                        <input
+                          type="password"
+                          name="password"
+                          ref={register({
+                            required: {
+                              value: true,
+                              message: "This field is required.",
+                            },
+                          })}
+                        ></input>
+                        {errors.phone && (
+                          <span style={{ color: "red" }}>
+                            {errors.phone.message}
+                          </span>
+                        )}
                       </Col>
                     </Row>
-                    
-                    <hr/>
+
+                    <hr />
                     {/* <b> Result: </b> */}
 
-<input className="btn btn-info btn-fill" type='submit'/>
+                    <input className="btn btn-info btn-fill" type="submit" />
                   </Grid>
-                  </form>
-                    </div>
-
+                </form>
+              </div>
+            }
+          />
+        </Row>
+      </Grid>
+    </div>
+  );
 }
-/>
-          </Row>
-        </Grid>
-      </div>
-    );
-  }
-
-

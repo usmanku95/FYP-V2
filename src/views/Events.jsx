@@ -17,14 +17,23 @@ gg
 */
 import React, { useState, useEffect } from "react";
 import { getEvents } from "../api";
-import { Grid, Row } from "react-bootstrap";
+import {
+  Grid,
+  Row,
+  FormGroup,
+  ControlLabel,
+  FormControl,
+} from "react-bootstrap";
 import ReactTable from "react-table-6";
 import "react-table-6/react-table.css";
 import { Modal, Button } from "react-bootstrap";
+import { useForm } from "react-hook-form";
 
 export default function Events() {
   const [data, setData] = useState([]);
   const [show, setShow] = useState(false);
+  const { register, handleSubmit, errors } = useForm();
+
   useEffect(() => {
     //Dont use async await in the components , use only in api.js
     getEvents().then((res) => {
@@ -41,6 +50,9 @@ export default function Events() {
   };
   const handleClose = () => {
     setShow(false);
+  };
+  const onSubmit = (data) => {
+    console.log(data);
   };
 
   const columns = [
@@ -77,18 +89,71 @@ export default function Events() {
       {/* <EventEdit show={show} onHide={handleClose} /> */}
 
       <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Edit Event</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Modal.Header closeButton>
+            <Modal.Title>Edit Event</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <FormGroup controlId="formBasicText">
+              <ControlLabel>Name:</ControlLabel>
+              <input
+                type=""
+                className="form-control"
+                name="name"
+                ref={register({
+                  required: {
+                    value: true,
+                    message: "This field is required.",
+                  },
+                })}
+              />
+              {errors.name && (
+                <span style={{ color: "red" }}>{errors.name.message}</span>
+              )}
+              <FormControl.Feedback />
+            </FormGroup>
+
+            <FormGroup controlId="formBasicText">
+              <ControlLabel>Year:</ControlLabel>
+              <input
+                type="number"
+                className="form-control"
+                name="year"
+                ref={register({
+                  required: {
+                    value: true,
+                    message: "This field is required.",
+                  },
+                  min: { value: 0, message: "minimum is 0." },
+                  maxLength: {
+                    value: 11,
+                    message: "Max length is 11.",
+                  },
+                })}
+              />
+              {errors.year && (
+                <span style={{ color: "red" }}>{errors.year.message}</span>
+              )}
+              <FormControl.Feedback />
+            </FormGroup>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button
+              className="btn-fill btn-primary"
+              variant="primary"
+              type="submit"
+            >
+              Edit
+            </Button>
+            <Button
+              className="btn-fill btn-danger"
+              variant="secondary"
+              onClick={handleClose}
+            >
+              Close
+            </Button>
+          </Modal.Footer>
+        </form>
       </Modal>
 
       <Grid fluid>

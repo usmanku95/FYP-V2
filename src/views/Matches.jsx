@@ -16,63 +16,64 @@
 
 */
 import React, { Component } from "react";
-import { Grid, Row, Col, Table } from "react-bootstrap";
-import ReactTable from 'react-table-6'
-import 'react-table-6/react-table.css'
-import Card from "components/Card/Card.jsx";
-import { thArray, tdArray } from "variables/Variables.jsx";
-import { Redirect } from "react-router";
+import { Grid, Row } from "react-bootstrap";
+import ReactTable from "react-table-6";
+import "react-table-6/react-table.css";
 
 class Matches extends Component {
   render() {
-    const data = [{
-        name: 'Tanner Linsley',
+    const data = [
+      {
+        name: "Tanner Linsley",
         age: 26,
-    //     friend: {
-    //       name: 'Jason Maurer',
-    //       age: 23,
-    //     }
-    //   },{
-    
-      }]
-     
-      const columns = [{
-        Header: 'Name',
-        accessor: 'name',
-      Cell:props => <a href='/user/matchSummary/matchId'>{props.value}</a> // String-based value accessors!
-      }, {
-        Header: 'Year',
-        accessor: 'age',
-        Cell: props => <span className='number'>{props.value}</span> // Custom cell components!
+        //     friend: {
+        //       name: 'Jason Maurer',
+        //       age: 23,
+        //     }
+        //   },{
+      },
+    ];
+
+    const columns = [
+      {
+        Header: "Name",
+        accessor: "name",
+        Cell: (props) => <a href="/user/matchSummary/matchId">{props.value}</a>, // String-based value accessors!
+      },
+      {
+        Header: "Year",
+        accessor: "age",
+        Cell: (props) => <span className="number">{props.value}</span>, // Custom cell components!
       },
 
-      true&& {
-         Header: 'Actions',
-         accessor: 'age',
-         Cell: props => <span className='number'><button  className='btn btn-sm btn-primary btn-fill'>edit</button> <button className='btn btn-sm btn-danger btn-fill'>delete</button></span> // Custom cell components!
-       },
+      true && {
+        Header: "Actions",
+        accessor: "age",
+        Cell: (props) => (
+          <span className="number">
+            <button className="btn btn-sm btn-primary btn-fill">edit</button>{" "}
+            <button className="btn btn-sm btn-danger btn-fill">delete</button>
+          </span>
+        ), // Custom cell components!
+      },
 
-    //    {
-    //     id: 'friendName', // Required because our accessor is not a string
-    //     Header: 'Friend Name',
-    //     // accessor: d => d.friend.name // Custom value accessors!
-    //   }, {
-    //     Header: props => <span>Friend Age</span>, // Custom header components!
-    //     accessor: 'friend.age'
-    //   }
-]
-     
-      
+      //    {
+      //     id: 'friendName', // Required because our accessor is not a string
+      //     Header: 'Friend Name',
+      //     // accessor: d => d.friend.name // Custom value accessors!
+      //   }, {
+      //     Header: props => <span>Friend Age</span>, // Custom header components!
+      //     accessor: 'friend.age'
+      //   }
+    ];
+
     return (
       <div className="content">
         <Grid fluid>
           <Row>
-          <button className='btn btn-info btn-fill'>+ Add Match</button>
+            <button className="btn btn-info btn-fill">+ Add Match</button>
 
-          <ReactTable
-    data={data}
-    columns={columns}
-  />
+            <ReactTable data={data} columns={columns} />
           </Row>
         </Grid>
       </div>

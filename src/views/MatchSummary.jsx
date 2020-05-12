@@ -16,57 +16,54 @@
 
 */
 import React, { Component } from "react";
-import { Grid, Row, Col, Table } from "react-bootstrap";
-import 'react-table-6/react-table.css'
+import { Grid, Row, Col } from "react-bootstrap";
+import "react-table-6/react-table.css";
 import Card from "components/Card/Card.jsx";
 
 class MatchSummary extends Component {
   render() {
-      
     return (
       <div className="content">
         <Grid fluid>
           <Row>
-          <Card
-                title="Match Name"
-                // category="Created using Roboto Font Family"
-                content={
-                  <div>
+            <Card
+              title="Match Name"
+              // category="Created using Roboto Font Family"
+              content={
+                <div>
                   <Grid fluid>
                     <Row>
                       <Col md={6}>
-                      <h4> Team 1: </h4>
+                        <h4> Team 1: </h4>
                       </Col>
                       <Col md={6}>
-                      <h4> Team 2: </h4>
+                        <h4> Team 2: </h4>
                       </Col>
                     </Row>
-                    <hr/>
+                    <hr />
                     <Row>
                       <Col md={6}>
-                      <h4> Team 1 Score: </h4>
+                        <h4> Team 1 Score: </h4>
                       </Col>
                       <Col md={6}>
-                      <h4> Team 2 Score: </h4>
+                        <h4> Team 2 Score: </h4>
                       </Col>
                     </Row>
-                    <hr/>
+                    <hr />
                     <Row>
                       <Col md={6}>
-                     <h4> Team 1 Overs: </h4>
+                        <h4> Team 1 Overs: </h4>
                       </Col>
                       <Col md={6}>
-                      <h4> Team 2 Overs: </h4>
+                        <h4> Team 2 Overs: </h4>
                       </Col>
                     </Row>
-                    <hr/>
+                    <hr />
                     <h4> Result: </h4>
-
                   </Grid>
-                    </div>
-
-}
-/>
+                </div>
+              }
+            />
           </Row>
         </Grid>
       </div>
