@@ -16,7 +16,7 @@ gg
 
 */
 import React, { useState, useEffect } from "react";
-import { getEvents, updateEvent } from "../api";
+import { getEvents, updateEvent, deleteEvent } from "../api";
 import {
   Grid,
   Row,
@@ -29,10 +29,13 @@ import "react-table-6/react-table.css";
 import { Modal, Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
+import AddModal from "./Modals/AddModal";
 export default function Events() {
   const [data, setData] = useState([]);
   const [show, setShow] = useState(false);
+  const [showAdd, setShowAdd] = useState(false);
   const [clickedItem, setClickedItem] = useState({});
 
   const { register, handleSubmit, errors } = useForm();
@@ -54,8 +57,26 @@ export default function Events() {
     setClickedItem(data);
     setShow(true);
   };
+  const handleAdd = () => {
+    setShowAdd(true);
+  };
+
+  const handleDelete = (id) => {
+    console.log(id, "id");
+    deleteEvent(id).then((res) => {
+      console.log(res, "resf form server");
+      if (res.data.name) {
+        dataLoader();
+
+        toast.success("Event deleted.");
+      } else toast.error(res.error);
+    });
+  };
   const handleClose = () => {
     setShow(false);
+  };
+  const handleCloseAdd = () => {
+    setShowAdd(false);
   };
   const onSubmit = (data) => {
     console.log(data, "sub data");
@@ -73,8 +94,10 @@ export default function Events() {
   const columns = [
     {
       Header: "Name",
-      accessor: "name", // String-based value accessors!,
-      Cell: (props) => <a href="/user/matches/eventId">{props.value}</a>, // String-based value accessors!
+      accessor: "name",
+      Cell: (props) => (
+        <Link to={`/user/matches/${props.original._id}`}>{props.value}</Link>
+      ),
     },
     {
       Header: "Year",
@@ -93,7 +116,14 @@ export default function Events() {
           >
             edit
           </button>{" "}
-          <button className="btn btn-sm btn-danger btn-fill">delete</button>
+          <button
+            onClick={() => {
+              handleDelete(props.original._id);
+            }}
+            className="btn btn-sm btn-danger btn-fill"
+          >
+            delete
+          </button>
         </span>
       ), // Custom cell components!
     },
@@ -101,6 +131,12 @@ export default function Events() {
 
   return (
     <div className="content">
+      <AddModal
+        showAdd={showAdd}
+        setShowAdd={setShowAdd}
+        dataLoader={dataLoader}
+        handleCloseAdd={handleCloseAdd}
+      />
       <Modal show={show} onHide={handleClose}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Modal.Header closeButton>
@@ -173,7 +209,14 @@ export default function Events() {
 
       <Grid fluid>
         <Row>
-          <button className="btn btn-info btn-fill">+ Add Event</button>
+          <button
+            onClick={() => {
+              handleAdd();
+            }}
+            className="btn btn-info btn-fill"
+          >
+            + Add Event
+          </button>
           <ReactTable data={data} columns={columns} />
         </Row>
       </Grid>

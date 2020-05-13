@@ -15,70 +15,86 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React, { Component } from "react";
+import React from "react";
+import { getMatches } from "../api";
+
 import { Grid, Row } from "react-bootstrap";
 import ReactTable from "react-table-6";
 import "react-table-6/react-table.css";
+import { useEffect, useState } from "react";
+import AddMatch from "./Modals/AddMatch";
 
-class Matches extends Component {
-  render() {
-    const data = [
-      {
-        name: "Tanner Linsley",
-        age: 26,
-        //     friend: {
-        //       name: 'Jason Maurer',
-        //       age: 23,
-        //     }
-        //   },{
-      },
-    ];
+export default function Matches(props) {
+  // const [data, setData] = useState([]);
+  const [show, setShow] = useState(false);
+  const data = [
+    {
+      name: "Tanner Linsley",
+      age: 26,
+      //     friend: {
+      //       name: 'Jason Maurer',
+      //       age: 23,
+      //     }
+      //   },{
+    },
+  ];
 
-    const columns = [
-      {
-        Header: "Name",
-        accessor: "name",
-        Cell: (props) => <a href="/user/matchSummary/matchId">{props.value}</a>, // String-based value accessors!
-      },
-      {
-        Header: "Year",
-        accessor: "age",
-        Cell: (props) => <span className="number">{props.value}</span>, // Custom cell components!
-      },
+  useEffect(() => {
+    console.log(props.match.params, "params");
 
-      true && {
-        Header: "Actions",
-        accessor: "age",
-        Cell: (props) => (
-          <span className="number">
-            <button className="btn btn-sm btn-primary btn-fill">edit</button>{" "}
-            <button className="btn btn-sm btn-danger btn-fill">delete</button>
-          </span>
-        ), // Custom cell components!
-      },
+    getMatches(props.match.params.id).then((res) => {
+      console.log(res, "res");
+      // setData(res.data);
+    });
+  });
 
-      //    {
-      //     id: 'friendName', // Required because our accessor is not a string
-      //     Header: 'Friend Name',
-      //     // accessor: d => d.friend.name // Custom value accessors!
-      //   }, {
-      //     Header: props => <span>Friend Age</span>, // Custom header components!
-      //     accessor: 'friend.age'
-      //   }
-    ];
+  const handleAdd = () => {
+    setShow(true);
+  };
+  const handleClose = () => {
+    setShow(false);
+  };
+  const columns = [
+    {
+      Header: "Name",
+      accessor: "name",
+      Cell: (props) => <a href="/user/matchSummary/matchId">{props.value}</a>, // String-based value accessors!
+    },
+    {
+      Header: "Year",
+      accessor: "age",
+      Cell: (props) => <span className="number">{props.value}</span>, // Custom cell components!
+    },
 
-    return (
-      <div className="content">
-        <Grid fluid>
-          <Row>
-            <button className="btn btn-info btn-fill">+ Add Match</button>
+    true && {
+      Header: "Actions",
+      accessor: "age",
+      Cell: (props) => (
+        <span className="number">
+          <button className="btn btn-sm btn-primary btn-fill">edit</button>{" "}
+          <button className="btn btn-sm btn-danger btn-fill">delete</button>
+        </span>
+      ), // Custom cell components!
+    },
+  ];
 
-            <ReactTable data={data} columns={columns} />
-          </Row>
-        </Grid>
-      </div>
-    );
-  }
+  return (
+    <div className="content">
+      <AddMatch show={show} setShow={setShow} handleClose={handleClose} />
+      <Grid fluid>
+        <Row>
+          <button
+            onClick={() => {
+              handleAdd();
+            }}
+            className="btn btn-info btn-fill"
+          >
+            + Add Match
+          </button>
+
+          <ReactTable data={data} columns={columns} />
+        </Row>
+      </Grid>
+    </div>
+  );
 }
-
-export default Matches;

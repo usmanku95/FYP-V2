@@ -16,14 +16,14 @@
 
 */
 import Dashboard from "views/Dashboard.jsx";
-import Events from "views/Events"
-import Matches from "views/Matches"
-import MatchSummary from "views/MatchSummary"
-import Teams from "views/Teams"
-import TeamDetails from "views/TeamDetails"
-import Schedule from "views/Schedule"
-import Scoreboard from "views/Scoreboard"
-import Register from "views/Register"
+import Events from "views/Events";
+import Matches from "views/Matches";
+import MatchSummary from "views/MatchSummary";
+import Teams from "views/Teams";
+import TeamDetails from "views/TeamDetails";
+import Schedule from "views/Schedule";
+import Scoreboard from "views/Scoreboard";
+import Register from "views/Register";
 
 import UserProfile from "views/UserProfile.jsx";
 import TableList from "views/TableList.jsx";
@@ -35,61 +35,62 @@ import Login from "views/Login";
 
 const dashboardRoutes = [
   {
-    path:"/events",
-    component:Events,
-    name:"Events",
-    layout:"/user"
+    path: "/events",
+    component: Events,
+    name: "Events",
+    layout: "/user",
   },
   {
-    path:"/matches",
-    component:Matches,
-    name:"Matches",
-    hideSelf:true,
-    layout:"/user"
+    path: "/matches/:id",
+    component: Matches,
+    name: "Matches",
+    hideSelf: true,
+    layout: "/user",
   },
 
   {
-    path:"/matchSummary",
-    component:MatchSummary,
-    name:"Match Summary",
-    hideSelf:true,
-    layout:"/user"
+    path: "/matchSummary",
+    component: MatchSummary,
+    name: "Match Summary",
+    hideSelf: true,
+    layout: "/user",
   },
   {
-    path:"/teams",
-    component:Teams,
-    name:"Teams",
-    layout:"/user"
+    path: "/teams",
+    component: Teams,
+    name: "Teams",
+    layout: "/user",
   },
   {
-    path:"/teamDetails",
-    component:TeamDetails,
-    name:"Teams Detail",
-    hideSelf:true,
-    layout:"/user"
+    path: "/teamDetails",
+    component: TeamDetails,
+    name: "Teams Detail",
+    hideSelf: true,
+    layout: "/user",
   },
   {
-    path:"/schedule",
-    component:Schedule,
-    name:"Schedule",
-    layout:"/user"
+    path: "/schedule",
+    component: Schedule,
+    name: "Schedule",
+    layout: "/user",
   },
   {
-    path:"/scoreboard",
-    component:Scoreboard,
-    name:"Scoreboard",
-    layout:"/user"
+    path: "/scoreboard",
+    component: Scoreboard,
+    name: "Scoreboard",
+    layout: "/user",
   },
   {
-    path:"/register",
-    component:Register,
-    name:"Register",
-    layout:"/user"
-  },  {
-    path:"/login",
-    component:Login,
-    name:"Login",
-    layout:"/user"
+    path: "/register",
+    component: Register,
+    name: "Register",
+    layout: "/user",
+  },
+  {
+    path: "/login",
+    component: Login,
+    name: "Login",
+    layout: "/user",
   },
 ];
 

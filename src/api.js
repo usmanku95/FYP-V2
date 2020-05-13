@@ -22,3 +22,9 @@ export async function deleteEvent(id) {
     axios.delete(`/deleteEvent/${id}`).then((res) => res.data)
   );
 }
+
+//Matches Calls
+
+export async function getMatches(id) {
+  return await resolve(axios.get(`./getMatches/${id}`).then((res) => res.data));
+}
