@@ -16,7 +16,7 @@ gg
 
 */
 import React, { useState, useEffect } from "react";
-import { getEvents } from "../api";
+import { getEvents, updateEvent } from "../api";
 import {
   Grid,
   Row,
@@ -28,31 +28,46 @@ import ReactTable from "react-table-6";
 import "react-table-6/react-table.css";
 import { Modal, Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export default function Events() {
   const [data, setData] = useState([]);
   const [show, setShow] = useState(false);
+  const [clickedItem, setClickedItem] = useState({});
+
   const { register, handleSubmit, errors } = useForm();
 
-  useEffect(() => {
-    //Dont use async await in the components , use only in api.js
+  const dataLoader = () => {
     getEvents().then((res) => {
       console.log(res, "res");
 
       setData(res.data);
     });
+  };
+
+  useEffect(() => {
+    //Dont use async await in the components , use only in api.js
+    dataLoader();
   }, []);
 
-  const handleEdit = () => {
+  const handleEdit = (data) => {
+    setClickedItem(data);
     setShow(true);
-
-    console.log("sdkfsks");
   };
   const handleClose = () => {
     setShow(false);
   };
   const onSubmit = (data) => {
-    console.log(data);
+    console.log(data, "sub data");
+    updateEvent(clickedItem._id, data).then((res) => {
+      console.log(res, "resf form server");
+      setShow(false);
+      if (res.data.name) {
+        dataLoader();
+
+        toast.success("Event updated.");
+      } else toast.error(res.error);
+    });
   };
 
   const columns = [
@@ -73,7 +88,7 @@ export default function Events() {
       Cell: (props) => (
         <span className="number">
           <button
-            onClick={handleEdit}
+            onClick={() => handleEdit(props.original)}
             className="btn btn-sm btn-primary btn-fill"
           >
             edit
@@ -86,8 +101,6 @@ export default function Events() {
 
   return (
     <div className="content">
-      {/* <EventEdit show={show} onHide={handleClose} /> */}
-
       <Modal show={show} onHide={handleClose}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Modal.Header closeButton>
@@ -98,6 +111,7 @@ export default function Events() {
               <ControlLabel>Name:</ControlLabel>
               <input
                 type=""
+                defaultValue={clickedItem.name}
                 className="form-control"
                 name="name"
                 ref={register({
@@ -117,6 +131,7 @@ export default function Events() {
               <ControlLabel>Year:</ControlLabel>
               <input
                 type="number"
+                defaultValue={clickedItem.year}
                 className="form-control"
                 name="year"
                 ref={register({

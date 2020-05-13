@@ -28,13 +28,15 @@ import "./assets/css/pe-icon-7-stroke.css";
 
 import AdminLayout from "layouts/Admin.jsx";
 import UserLayout from "layouts/User.jsx";
+import { ToastContainer } from "react-toastify";
 
 ReactDOM.render(
   <BrowserRouter>
+    <ToastContainer />
+
     <Switch>
-      
-      <Route path="/admin" render={props => <AdminLayout {...props} />} />
-      <Route path="/user" render={props => <UserLayout {...props} />} />
+      <Route path="/admin" render={(props) => <AdminLayout {...props} />} />
+      <Route path="/user" render={(props) => <UserLayout {...props} />} />
 
       <Redirect from="/" to="/admin/dashboard" />
     </Switch>
