@@ -42,8 +42,6 @@ export default function Events() {
 
   const dataLoader = () => {
     getEvents().then((res) => {
-      console.log(res, "res");
-
       setData(res.data);
     });
   };

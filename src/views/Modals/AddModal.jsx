@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { FormGroup, ControlLabel, FormControl } from "react-bootstrap";
 import { addEvent } from "../../api";
 

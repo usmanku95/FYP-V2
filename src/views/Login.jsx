@@ -17,12 +17,24 @@
 */
 import React from "react";
 import { Grid, Row, Col } from "react-bootstrap";
+import { login } from "../api";
+
 import "react-table-6/react-table.css";
 import Card from "components/Card/Card.jsx";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 export default function Login() {
-  const { register, handleSubmit, watch, errors } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const { register, handleSubmit, errors } = useForm();
+  const onSubmit = (data) => {
+    console.log(data);
+    login(data).then((res) => {
+      console.log(res, "res");
+      if (res.data.token) {
+        console.log("success");
+        //direct to admin route, also save token in local storage
+      } else toast.error(res.error);
+    });
+  };
   return (
     <div className="content">
       <Grid fluid>

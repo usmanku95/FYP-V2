@@ -1,30 +1,35 @@
 import React from "react";
 import { FormGroup, ControlLabel, FormControl } from "react-bootstrap";
-import { addMatch } from "../../api";
+import { editMatch } from "../../api";
 
 import { Modal, Button, Grid, Row, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-const AddMatch = ({ show, handleClose, setShow, eventId, dataLoader }) => {
+const EditMatch = ({
+  showEdit,
+  selectedMatch,
+  handleCloseEdit,
+  setShowEdit,
+  dataLoader,
+}) => {
   const { register, handleSubmit, errors } = useForm();
 
   const onSubmit = (data) => {
-    data = { eventId, ...data };
     console.log(data, "sub data");
 
-    addMatch(data).then((res) => {
+    editMatch(selectedMatch._id, data).then((res) => {
       console.log(res, "resf form server");
-      setShow(false);
+      setShowEdit(false);
       if (res.data.name) {
         dataLoader();
 
-        toast.success("Event updated.");
+        toast.success("Match updated.");
       } else toast.error(res.error);
     });
   };
   return (
-    <Modal bsSize="lg" show={show} onHide={handleClose}>
+    <Modal bsSize="lg" show={showEdit} onHide={handleCloseEdit}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Modal.Header closeButton>
           <Modal.Title>Add Match Info.</Modal.Title>
@@ -38,6 +43,7 @@ const AddMatch = ({ show, handleClose, setShow, eventId, dataLoader }) => {
                   <ControlLabel>Name:</ControlLabel>
                   <input
                     type=""
+                    defaultValue={selectedMatch.name}
                     className="form-control"
                     name="name"
                     ref={register({
@@ -59,6 +65,7 @@ const AddMatch = ({ show, handleClose, setShow, eventId, dataLoader }) => {
                   <ControlLabel>Date:</ControlLabel>
                   <input
                     type="date"
+                    defaultValue={selectedMatch.date}
                     className="form-control"
                     name="date"
                     ref={register({
@@ -82,6 +89,7 @@ const AddMatch = ({ show, handleClose, setShow, eventId, dataLoader }) => {
                   <ControlLabel>Team 1:</ControlLabel>
                   <input
                     type=""
+                    defaultValue={selectedMatch.team1}
                     className="form-control"
                     name="team1"
                     ref={register({
@@ -102,6 +110,7 @@ const AddMatch = ({ show, handleClose, setShow, eventId, dataLoader }) => {
                   <ControlLabel>Team 2:</ControlLabel>
                   <input
                     type=""
+                    defaultValue={selectedMatch.team2}
                     className="form-control"
                     name="team2"
                     ref={register({
@@ -125,6 +134,7 @@ const AddMatch = ({ show, handleClose, setShow, eventId, dataLoader }) => {
                   <ControlLabel>Team 1 Score:</ControlLabel>
                   <input
                     type=""
+                    defaultValue={selectedMatch.team1Score}
                     placeholder="e.g 300/9"
                     className="form-control"
                     name="team1Score"
@@ -148,6 +158,7 @@ const AddMatch = ({ show, handleClose, setShow, eventId, dataLoader }) => {
                   <ControlLabel>Team 2 Score:</ControlLabel>
                   <input
                     type=""
+                    defaultValue={selectedMatch.team2Score}
                     className="form-control"
                     placeholder="e.g 300/9"
                     name="team2Score"
@@ -174,6 +185,7 @@ const AddMatch = ({ show, handleClose, setShow, eventId, dataLoader }) => {
                   <ControlLabel>Team 1 Overs:</ControlLabel>
                   <input
                     type="number"
+                    defaultValue={selectedMatch.team1Overs}
                     className="form-control"
                     name="team1Overs"
                     ref={register({
@@ -201,6 +213,7 @@ const AddMatch = ({ show, handleClose, setShow, eventId, dataLoader }) => {
                   <ControlLabel>Team 2 Overs:</ControlLabel>
                   <input
                     type="number"
+                    defaultValue={selectedMatch.team2Overs}
                     className="form-control"
                     name="team2Overs"
                     ref={register({
@@ -230,6 +243,7 @@ const AddMatch = ({ show, handleClose, setShow, eventId, dataLoader }) => {
                   <ControlLabel>Result:</ControlLabel>
                   <input
                     type=""
+                    defaultValue={selectedMatch.result}
                     className="form-control"
                     name="result"
                     ref={register({
@@ -256,12 +270,12 @@ const AddMatch = ({ show, handleClose, setShow, eventId, dataLoader }) => {
             variant="primary"
             type="submit"
           >
-            Add
+            Edit
           </Button>
           <Button
             className="btn-fill btn-danger"
             variant="secondary"
-            onClick={handleClose}
+            onClick={handleCloseEdit}
           >
             Close
           </Button>
@@ -271,4 +285,4 @@ const AddMatch = ({ show, handleClose, setShow, eventId, dataLoader }) => {
   );
 };
 
-export default AddMatch;
+export default EditMatch;
