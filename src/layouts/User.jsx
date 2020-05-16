@@ -21,28 +21,29 @@ import { Route, Switch } from "react-router-dom";
 import UserNavbar from "components/Navbars/UserNavbar";
 import Sidebar from "components/Sidebar/Sidebar";
 
-
 import routes from "userRoutes.js";
 
 import image from "assets/img/sidebar-3.jpg";
+import jwtDecode from "jwt-decode";
 
 class User extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      decoded: {},
       image: image,
       color: "black",
       hasImage: true,
-      fixedClasses: "dropdown show-dropdown open"
+      fixedClasses: "dropdown show-dropdown open",
     };
   }
-  getRoutes = routes => {
+  getRoutes = (routes) => {
     return routes.map((prop, key) => {
-      if (prop.layout === "/user" ) {
+      if (prop.layout === "/user") {
         return (
           <Route
             path={prop.layout + prop.path}
-            render={props => (
+            render={(props) => (
               <prop.component
                 {...props}
                 handleClick={this.handleNotificationClick}
@@ -56,7 +57,7 @@ class User extends Component {
       }
     });
   };
-  getBrandText = path => {
+  getBrandText = (path) => {
     for (let i = 0; i < routes.length; i++) {
       if (
         this.props.location.pathname.indexOf(
@@ -68,13 +69,13 @@ class User extends Component {
     }
     return "Brand";
   };
-  handleImageClick = image => {
+  handleImageClick = (image) => {
     this.setState({ image: image });
   };
-  handleColorClick = color => {
+  handleColorClick = (color) => {
     this.setState({ color: color });
   };
-  handleHasImage = hasImage => {
+  handleHasImage = (hasImage) => {
     this.setState({ hasImage: hasImage });
   };
   handleFixedClick = () => {
@@ -84,8 +85,13 @@ class User extends Component {
       this.setState({ fixedClasses: "dropdown" });
     }
   };
-  componentDidMount() {
-   
+  componentWillMount() {
+    if (localStorage.getItem("token")) {
+      this.setState({ decoded: jwtDecode(localStorage.getItem("token")) });
+      console.log(this.state.decoded, "decoded in user User layouts");
+
+      // setIsAdmin(true);
+    }
   }
   componentDidUpdate(e) {
     if (
@@ -104,16 +110,19 @@ class User extends Component {
   render() {
     return (
       <div className="wrapper">
-        <Sidebar {...this.props} routes={routes} image={this.state.image}
-        color={this.state.color}
-        hasImage={this.state.hasImage}/>
+        <Sidebar
+          {...this.props}
+          routes={routes}
+          image={this.state.image}
+          color={this.state.color}
+          hasImage={this.state.hasImage}
+        />
         <div id="main-panel" className="main-panel" ref="mainPanel">
           <UserNavbar
             {...this.props}
             brandText={this.getBrandText(this.props.location.pathname)}
           />
           <Switch>{this.getRoutes(routes)}</Switch>
-         
         </div>
       </div>
     );

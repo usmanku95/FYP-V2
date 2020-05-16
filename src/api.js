@@ -50,3 +50,24 @@ export async function deleteMatch(id) {
     axios.delete(`./deleteMatch/${id}`).then((res) => res.data)
   );
 }
+
+//Team calls
+export async function addTeam(data) {
+  return await resolve(axios.post("/addTeam", data).then((res) => res.data));
+}
+
+export async function getTeams() {
+  return await resolve(axios.get("/getTeams").then((res) => res.data));
+}
+
+export async function updateTeam(teamId, data) {
+  return await resolve(
+    axios.put(`/updateTeam/${teamId}`, data).then((res) => res.data)
+  );
+}
+
+export async function deleteTeam(id) {
+  return await resolve(
+    axios.delete(`/deleteTeam/${id}`).then((res) => res.data)
+  );
+}

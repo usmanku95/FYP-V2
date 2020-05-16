@@ -29,9 +29,11 @@ import "react-table-6/react-table.css";
 import { Modal, Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
+import { Link } from "react-router-dom";
+
 import AddModal from "./Modals/AddModal";
+import jwtDecode from "jwt-decode";
 export default function Events() {
   const [data, setData] = useState([]);
   const [show, setShow] = useState(false);
@@ -39,12 +41,16 @@ export default function Events() {
   const [clickedItem, setClickedItem] = useState({});
 
   const { register, handleSubmit, errors } = useForm();
-
+  let decoded = { isAdmin: false };
   const dataLoader = () => {
     getEvents().then((res) => {
       setData(res.data);
     });
   };
+  if (localStorage.getItem("token")) {
+    decoded = jwtDecode(window.localStorage.getItem("token"));
+    console.log(decoded, "decode");
+  }
 
   useEffect(() => {
     //Dont use async await in the components , use only in api.js
@@ -103,28 +109,30 @@ export default function Events() {
       Cell: (props) => <span className="number">{props.value}</span>, // Custom cell components!
     },
 
-    true && {
-      Header: "Actions",
-      accessor: "age",
-      Cell: (props) => (
-        <span className="number">
-          <button
-            onClick={() => handleEdit(props.original)}
-            className="btn btn-sm btn-primary btn-fill"
-          >
-            edit
-          </button>{" "}
-          <button
-            onClick={() => {
-              handleDelete(props.original._id);
-            }}
-            className="btn btn-sm btn-danger btn-fill"
-          >
-            delete
-          </button>
-        </span>
-      ), // Custom cell components!
-    },
+    decoded.isAdmin
+      ? {
+          Header: "Actions",
+          accessor: "age",
+          Cell: (props) => (
+            <span className="number">
+              <button
+                onClick={() => handleEdit(props.original)}
+                className="btn btn-sm btn-primary btn-fill"
+              >
+                edit
+              </button>{" "}
+              <button
+                onClick={() => {
+                  handleDelete(props.original._id);
+                }}
+                className="btn btn-sm btn-danger btn-fill"
+              >
+                delete
+              </button>
+            </span>
+          ), // Custom cell components!
+        }
+      : {},
   ];
 
   return (
@@ -207,14 +215,16 @@ export default function Events() {
 
       <Grid fluid>
         <Row>
-          <button
-            onClick={() => {
-              handleAdd();
-            }}
-            className="btn btn-info btn-fill"
-          >
-            + Add Event
-          </button>
+          {decoded.isAdmin && (
+            <button
+              onClick={() => {
+                handleAdd();
+              }}
+              className="btn btn-info btn-fill"
+            >
+              + Add Event
+            </button>
+          )}
           <ReactTable data={data} columns={columns} />
         </Row>
       </Grid>

@@ -35,10 +35,10 @@ ReactDOM.render(
     <ToastContainer />
 
     <Switch>
-      <Route path="/admin" render={(props) => <AdminLayout {...props} />} />
+      {/* <Route path="/admin" render={(props) => <AdminLayout {...props} />} /> */}
       <Route path="/user" render={(props) => <UserLayout {...props} />} />
 
-      <Redirect from="/" to="/admin/dashboard" />
+      <Redirect from="/" to="/user/events" />
     </Switch>
   </BrowserRouter>,
   document.getElementById("root")
