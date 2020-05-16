@@ -21,6 +21,7 @@ import { Modal, Button } from "react-bootstrap";
 import {
   Grid,
   Row,
+  Col,
   FormGroup,
   ControlLabel,
   FormControl,
@@ -144,50 +145,336 @@ export default function Teams() {
             <Modal.Title>Edit Team</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <FormGroup controlId="formBasicText">
-              <ControlLabel>Name:</ControlLabel>
-              <input
-                type=""
-                defaultValue={clickedItem.name}
-                className="form-control"
-                name="name"
-                ref={register({
-                  required: {
-                    value: true,
-                    message: "This field is required.",
-                  },
-                })}
-              />
-              {errors.name && (
-                <span style={{ color: "red" }}>{errors.name.message}</span>
-              )}
-              <FormControl.Feedback />
-            </FormGroup>
+            <Grid fluid>
+              <Row>
+                <Col md={6}>
+                  {" "}
+                  <FormGroup controlId="formBasicText">
+                    <ControlLabel>Name:</ControlLabel>
+                    <input
+                      type=""
+                      defaultValue={clickedItem.name}
+                      className="form-control"
+                      name="name"
+                      ref={register({
+                        required: {
+                          value: true,
+                          message: "This field is required.",
+                        },
+                      })}
+                    />
+                    {errors.name && (
+                      <span style={{ color: "red" }}>
+                        {errors.name.message}
+                      </span>
+                    )}
+                    <FormControl.Feedback />
+                  </FormGroup>
+                </Col>
+                <Col md={6}>
+                  {" "}
+                  <FormGroup controlId="formBasicText">
+                    <ControlLabel>Player 1:</ControlLabel>
+                    <input
+                      type=""
+                      defaultValue={clickedItem.player1}
+                      className="form-control"
+                      name="player1"
+                      ref={register({
+                        required: {
+                          value: true,
+                          message: "This field is required.",
+                        },
+                      })}
+                    />
+                    {errors.player1 && (
+                      <span style={{ color: "red" }}>
+                        {errors.player1.message}
+                      </span>
+                    )}
+                    <FormControl.Feedback />
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Row>
+                <Col md={6}>
+                  {" "}
+                  <FormGroup controlId="formBasicText">
+                    <ControlLabel>Player 2:</ControlLabel>
+                    <input
+                      type=""
+                      defaultValue={clickedItem.player2}
+                      className="form-control"
+                      name="player2"
+                      ref={register({
+                        required: {
+                          value: true,
+                          message: "This field is required.",
+                        },
+                      })}
+                    />
+                    {errors.player2 && (
+                      <span style={{ color: "red" }}>
+                        {errors.player2.message}
+                      </span>
+                    )}
+                    <FormControl.Feedback />
+                  </FormGroup>
+                </Col>
+                <Col md={6}>
+                  <FormGroup controlId="formBasicText">
+                    <ControlLabel>Player 3:</ControlLabel>
+                    <input
+                      type=""
+                      defaultValue={clickedItem.player3}
+                      className="form-control"
+                      name="player3"
+                      ref={register({
+                        required: {
+                          value: true,
+                          message: "This field is required.",
+                        },
+                      })}
+                    />
+                    {errors.player3 && (
+                      <span style={{ color: "red" }}>
+                        {errors.player3.message}
+                      </span>
+                    )}
+                    <FormControl.Feedback />
+                  </FormGroup>
+                </Col>
+              </Row>
 
-            <FormGroup controlId="formBasicText">
-              <ControlLabel>Year:</ControlLabel>
-              <input
-                type="number"
-                defaultValue={clickedItem.year}
-                className="form-control"
-                name="year"
-                ref={register({
-                  required: {
-                    value: true,
-                    message: "This field is required.",
-                  },
-                  min: { value: 0, message: "minimum is 0." },
-                  maxLength: {
-                    value: 11,
-                    message: "Max length is 11.",
-                  },
-                })}
-              />
-              {errors.year && (
-                <span style={{ color: "red" }}>{errors.year.message}</span>
-              )}
-              <FormControl.Feedback />
-            </FormGroup>
+              <Row>
+                <Col md={6}>
+                  <FormGroup controlId="formBasicText">
+                    <ControlLabel>Player 4:</ControlLabel>
+                    <input
+                      type=""
+                      defaultValue={clickedItem.player4}
+                      className="form-control"
+                      name="player4"
+                      ref={register({
+                        required: {
+                          value: true,
+                          message: "This field is required.",
+                        },
+                      })}
+                    />
+                    {errors.player4 && (
+                      <span style={{ color: "red" }}>
+                        {errors.player4.message}
+                      </span>
+                    )}
+                    <FormControl.Feedback />
+                  </FormGroup>
+                </Col>
+                <Col md={6}>
+                  <FormGroup controlId="formBasicText">
+                    <ControlLabel>Player 5:</ControlLabel>
+                    <input
+                      type=""
+                      defaultValue={clickedItem.player5}
+                      className="form-control"
+                      name="player5"
+                      ref={register({
+                        required: {
+                          value: true,
+                          message: "This field is required.",
+                        },
+                      })}
+                    />
+                    {errors.player5 && (
+                      <span style={{ color: "red" }}>
+                        {errors.player5.message}
+                      </span>
+                    )}
+                    <FormControl.Feedback />
+                  </FormGroup>
+                </Col>
+              </Row>
+
+              <Row>
+                <Col md={6}>
+                  <FormGroup controlId="formBasicText">
+                    <ControlLabel>Player 6:</ControlLabel>
+                    <input
+                      type="text"
+                      defaultValue={clickedItem.player6}
+                      className="form-control"
+                      name="player6"
+                      ref={register({
+                        required: {
+                          value: true,
+                          message: "This field is required.",
+                        },
+                        min: { value: 0, message: "minimum is 0." },
+                        maxLength: {
+                          value: 11,
+                          message: "Max length is 11.",
+                        },
+                      })}
+                    />
+                    {errors.player6 && (
+                      <span style={{ color: "red" }}>
+                        {errors.player6.message}
+                      </span>
+                    )}
+                    <FormControl.Feedback />
+                  </FormGroup>
+                </Col>
+                <Col md={6}>
+                  <FormGroup controlId="formBasicText">
+                    <ControlLabel>Player 7:</ControlLabel>
+                    <input
+                      type="text"
+                      defaultValue={clickedItem.player7}
+                      className="form-control"
+                      name="player7"
+                      ref={register({
+                        required: {
+                          value: true,
+                          message: "This field is required.",
+                        },
+                        min: { value: 0, message: "minimum is 0." },
+                        maxLength: {
+                          value: 11,
+                          message: "Max length is 11.",
+                        },
+                      })}
+                    />
+                    {errors.player7 && (
+                      <span style={{ color: "red" }}>
+                        {errors.player7.message}
+                      </span>
+                    )}
+                    <FormControl.Feedback />
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Row>
+                <Col md={6}>
+                  <FormGroup controlId="formBasicText">
+                    <ControlLabel>Player 8:</ControlLabel>
+                    <input
+                      type=""
+                      defaultValue={clickedItem.player8}
+                      className="form-control"
+                      name="player8"
+                      ref={register({
+                        required: {
+                          value: true,
+                          message: "This field is required.",
+                        },
+                      })}
+                    />
+                    {errors.player8 && (
+                      <span style={{ color: "red" }}>
+                        {errors.player8.message}
+                      </span>
+                    )}
+                    <FormControl.Feedback />
+                  </FormGroup>
+                </Col>
+                <Col md={6}>
+                  <FormGroup controlId="formBasicText">
+                    <ControlLabel>Player 9:</ControlLabel>
+                    <input
+                      type=""
+                      defaultValue={clickedItem.player9}
+                      className="form-control"
+                      name="player9"
+                      ref={register({
+                        required: {
+                          value: true,
+                          message: "This field is required.",
+                        },
+                      })}
+                    />
+                    {errors.player9 && (
+                      <span style={{ color: "red" }}>
+                        {errors.player9.message}
+                      </span>
+                    )}
+                    <FormControl.Feedback />
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Row>
+                <Col md={6}>
+                  <FormGroup controlId="formBasicText">
+                    <ControlLabel>Player 10:</ControlLabel>
+                    <input
+                      type=""
+                      defaultValue={clickedItem.player10}
+                      className="form-control"
+                      name="player10"
+                      ref={register({
+                        required: {
+                          value: true,
+                          message: "This field is required.",
+                        },
+                      })}
+                    />
+                    {errors.player10 && (
+                      <span style={{ color: "red" }}>
+                        {errors.player10.message}
+                      </span>
+                    )}
+                    <FormControl.Feedback />
+                  </FormGroup>
+                </Col>
+                <Col md={6}>
+                  <FormGroup controlId="formBasicText">
+                    <ControlLabel>Player 11:</ControlLabel>
+                    <input
+                      type=""
+                      defaultValue={clickedItem.player11}
+                      className="form-control"
+                      name="player11"
+                      ref={register({
+                        required: {
+                          value: true,
+                          message: "This field is required.",
+                        },
+                      })}
+                    />
+                    {errors.player11 && (
+                      <span style={{ color: "red" }}>
+                        {errors.player11.message}
+                      </span>
+                    )}
+                    <FormControl.Feedback />
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Row>
+                <Col md={6}>
+                  <FormGroup controlId="formBasicText">
+                    <ControlLabel>Player 12:</ControlLabel>
+                    <input
+                      type=""
+                      defaultValue={clickedItem.player12}
+                      className="form-control"
+                      name="player12"
+                      ref={register({
+                        required: {
+                          value: true,
+                          message: "This field is required.",
+                        },
+                      })}
+                    />
+                    {errors.player12 && (
+                      <span style={{ color: "red" }}>
+                        {errors.player12.message}
+                      </span>
+                    )}
+                    <FormControl.Feedback />
+                  </FormGroup>
+                </Col>
+              </Row>
+            </Grid>
           </Modal.Body>
           <Modal.Footer>
             <Button

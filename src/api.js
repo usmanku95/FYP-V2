@@ -71,3 +71,24 @@ export async function deleteTeam(id) {
     axios.delete(`/deleteTeam/${id}`).then((res) => res.data)
   );
 }
+
+//Entry calls
+export async function addEntry(data) {
+  return await resolve(axios.post("/addEntry", data).then((res) => res.data));
+}
+
+export async function getEntries() {
+  return await resolve(axios.get("/getEntries").then((res) => res.data));
+}
+
+export async function updateEntry(entryId, data) {
+  return await resolve(
+    axios.put(`/updateEntry/${entryId}`, data).then((res) => res.data)
+  );
+}
+
+export async function deleteEntry(id) {
+  return await resolve(
+    axios.delete(`/deleteEntry/${id}`).then((res) => res.data)
+  );
+}
