@@ -102,33 +102,31 @@ export default function Teams() {
       accessor: "name", // String-based value accessors!,
       Cell: (props) => <a href="/user/matches/teamId">{props.value}</a>, // String-based value accessors!
     },
-    // {
-    //   Header: "Year",
-    //   accessor: "age",
-    //   Cell: (props) => <span className="number">{props.value}</span>, // Custom cell components!
-    // },
-    true && {
-      Header: "Actions",
-      accessor: "age",
-      Cell: (props) => (
-        <span className="number">
-          <button
-            onClick={() => handleEdit(props.original)}
-            className="btn btn-sm btn-primary btn-fill"
-          >
-            edit
-          </button>{" "}
-          <button
-            onClick={() => {
-              handleDelete(props.original._id);
-            }}
-            className="btn btn-sm btn-danger btn-fill"
-          >
-            delete
-          </button>{" "}
-        </span>
-      ), // Custom cell components!
-    },
+
+    decoded.isAdmin
+      ? {
+          Header: "Actions",
+          accessor: "age",
+          Cell: (props) => (
+            <span className="number">
+              <button
+                onClick={() => handleEdit(props.original)}
+                className="btn btn-sm btn-primary btn-fill"
+              >
+                edit
+              </button>{" "}
+              <button
+                onClick={() => {
+                  handleDelete(props.original._id);
+                }}
+                className="btn btn-sm btn-danger btn-fill"
+              >
+                delete
+              </button>{" "}
+            </span>
+          ), // Custom cell components!
+        }
+      : {},
   ];
 
   return (

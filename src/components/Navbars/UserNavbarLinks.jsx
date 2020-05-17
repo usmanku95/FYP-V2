@@ -20,35 +20,44 @@ import { NavItem, Nav, NavDropdown, MenuItem } from "react-bootstrap";
 import jwtDecode from "jwt-decode";
 import { Redirect } from "react-router";
 import { useState } from "react";
-import { useEffect } from "react";
-export default function UserNavbarLinks(props) {
+import { connect } from "react-redux";
+import { toggleLogin } from "../../redux/actions";
+//mapState receives entire state of store , it should
+// return only a part of data that this component needs.
+
+function mapDispatchToProps(dispatch) {
+  return {
+    toggleLogin: (article) => {
+      console.log(article, "artivlekrl");
+      dispatch(toggleLogin(article));
+    },
+  };
+}
+const mapStateToProps = (state) => {
+  return { isLoggedIn: state.isLoggedIn };
+};
+const ConnUserNavbarLinks = (props) => {
+  console.log(props.isLoggedIn, "redux art");
+
   const [redirect, setRedirect] = useState(false);
   // const [isAdmin, setIsAdmin] = useState(false);
   let decoded = { isAdmin: false };
   if (localStorage.getItem("token")) {
     decoded = jwtDecode(localStorage.getItem("token"));
-    console.log(decoded, "decoded in user navabrlinks");
-
-    // setIsAdmin(true);
   }
-  // useEffect(() => {}, [decoded]);
   const handleLogout = () => {
     localStorage.removeItem("token");
-    console.log("log oy click");
+    props.toggleLogin(false);
 
-    // setIsAdmin(false);
-    console.log(props, "props in nav");
-    // window.history.push("/user/login");
-    // props.history.push("/user/login");
     setRedirect(true);
   };
   if (redirect) {
-    return <Redirect to="/user/login" />;
+    return <Redirect to="/" />;
   } else
     return (
       <div>
         <Nav pullRight>
-          {decoded.isAdmin ? (
+          {props.isLoggedIn ? (
             <NavItem eventKey={3} onClick={handleLogout} href="/user/login">
               Log out
             </NavItem>
@@ -60,4 +69,9 @@ export default function UserNavbarLinks(props) {
         </Nav>
       </div>
     );
-}
+};
+const UserNavbarLinks = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ConnUserNavbarLinks);
+export default UserNavbarLinks;

@@ -96,7 +96,7 @@ export default function Schedule() {
     {
       Header: "Name",
       accessor: "name", // String-based value accessors!,
-      Cell: (props) => <a href="/user/matches/eventId">{props.value}</a>, // String-based value accessors!
+      Cell: (props) => <span>{props.value}</span>, // String-based value accessors!
     },
 
     {
@@ -113,28 +113,30 @@ export default function Schedule() {
       Header: "Venue",
       accessor: "venue",
     },
-    true && {
-      Header: "Actions",
-      accessor: "age",
-      Cell: (props) => (
-        <span className="number">
-          <button
-            onClick={() => handleEdit(props.original)}
-            className="btn btn-sm btn-primary btn-fill"
-          >
-            edit
-          </button>{" "}
-          <button
-            onClick={() => {
-              handleDelete(props.original._id);
-            }}
-            className="btn btn-sm btn-danger btn-fill"
-          >
-            delete
-          </button>{" "}
-        </span>
-      ), // Custom cell components!
-    },
+    decoded.isAdmin
+      ? {
+          Header: "Actions",
+          accessor: "age",
+          Cell: (props) => (
+            <span className="number">
+              <button
+                onClick={() => handleEdit(props.original)}
+                className="btn btn-sm btn-primary btn-fill"
+              >
+                edit
+              </button>{" "}
+              <button
+                onClick={() => {
+                  handleDelete(props.original._id);
+                }}
+                className="btn btn-sm btn-danger btn-fill"
+              >
+                delete
+              </button>{" "}
+            </span>
+          ), // Custom cell components!
+        }
+      : {},
   ];
 
   return (

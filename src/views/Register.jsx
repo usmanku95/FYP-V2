@@ -312,16 +312,15 @@ export default function Register() {
 
       <Grid fluid>
         <Row>
-          {decoded.isAdmin && (
-            <button
-              onClick={() => {
-                handleAdd();
-              }}
-              className="btn btn-info btn-fill"
-            >
-              + Get Registered
-            </button>
-          )}
+          <button
+            onClick={() => {
+              handleAdd();
+            }}
+            className="btn btn-info btn-fill"
+          >
+            + Get Registered
+          </button>
+
           <ReactTable data={data} columns={columns} />
         </Row>
       </Grid>

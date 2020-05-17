@@ -17,7 +17,8 @@
 */
 import React from "react";
 import ReactDOM from "react-dom";
-
+import { Provider } from "react-redux";
+import store from "./redux/store";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -26,20 +27,24 @@ import "./assets/sass/light-bootstrap-dashboard-react.scss?v=1.3.0";
 import "./assets/css/demo.css";
 import "./assets/css/pe-icon-7-stroke.css";
 
-import AdminLayout from "layouts/Admin.jsx";
+// import AdminLayout from "layouts/Admin.jsx";
 import UserLayout from "layouts/User.jsx";
 import { ToastContainer } from "react-toastify";
-
+import { addArticle } from "./redux/actions";
+window.store = store;
+window.addArticle = addArticle();
 ReactDOM.render(
-  <BrowserRouter>
-    <ToastContainer />
+  <Provider store={store}>
+    <BrowserRouter>
+      <ToastContainer />
 
-    <Switch>
-      {/* <Route path="/admin" render={(props) => <AdminLayout {...props} />} /> */}
-      <Route path="/user" render={(props) => <UserLayout {...props} />} />
+      <Switch>
+        {/* <Route path="/admin" render={(props) => <AdminLayout {...props} />} /> */}
+        <Route path="/user" render={(props) => <UserLayout {...props} />} />
 
-      <Redirect from="/" to="/user/events" />
-    </Switch>
-  </BrowserRouter>,
+        <Redirect from="/" to="/user/events" />
+      </Switch>
+    </BrowserRouter>
+  </Provider>,
   document.getElementById("root")
 );

@@ -23,9 +23,9 @@ import "react-table-6/react-table.css";
 import { useEffect, useState } from "react";
 import AddMatch from "./Modals/AddMatch";
 import EditMatch from "./Modals/EditMatch";
-
 import { toast } from "react-toastify";
 import ViewMatchSummary from "./Modals/ViewMatchSummary";
+import jwtDecode from "jwt-decode";
 
 export default function Matches(props) {
   const [data, setData] = useState([]);
@@ -34,6 +34,12 @@ export default function Matches(props) {
   const [showView, setShowView] = useState(false);
 
   const [selectedMatch, setSelectedMatch] = useState({});
+
+  let decoded = { isAdmin: false };
+  if (localStorage.getItem("token")) {
+    decoded = jwtDecode(window.localStorage.getItem("token"));
+    console.log(decoded, "decode");
+  }
 
   const dataLoader = () => {
     getMatches(props.match.params.id).then((res) => {
@@ -96,28 +102,30 @@ export default function Matches(props) {
       Cell: (props) => <span className="number">{props.value}</span>, // Custom cell components!
     },
 
-    true && {
-      Header: "Actions",
-      accessor: "age",
-      Cell: (props) => (
-        <span className="number">
-          <button
-            onClick={() => handleEdit(props.original)}
-            className="btn btn-sm btn-primary btn-fill"
-          >
-            edit
-          </button>{" "}
-          <button
-            onClick={() => {
-              handleDelete(props.original._id);
-            }}
-            className="btn btn-sm btn-danger btn-fill"
-          >
-            delete
-          </button>
-        </span>
-      ), // Custom cell components!
-    },
+    decoded.isAdmin
+      ? {
+          Header: "Actions",
+          accessor: "age",
+          Cell: (props) => (
+            <span className="number">
+              <button
+                onClick={() => handleEdit(props.original)}
+                className="btn btn-sm btn-primary btn-fill"
+              >
+                edit
+              </button>{" "}
+              <button
+                onClick={() => {
+                  handleDelete(props.original._id);
+                }}
+                className="btn btn-sm btn-danger btn-fill"
+              >
+                delete
+              </button>
+            </span>
+          ), // Custom cell components!
+        }
+      : {},
   ];
 
   return (
@@ -145,14 +153,16 @@ export default function Matches(props) {
       />
       <Grid fluid>
         <Row>
-          <button
-            onClick={() => {
-              handleAdd();
-            }}
-            className="btn btn-info btn-fill"
-          >
-            + Add Match
-          </button>
+          {decoded.isAdmin && (
+            <button
+              onClick={() => {
+                handleAdd();
+              }}
+              className="btn btn-info btn-fill"
+            >
+              + Add Match
+            </button>
+          )}
 
           <ReactTable data={data} columns={columns} />
         </Row>

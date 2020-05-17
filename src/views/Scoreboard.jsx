@@ -38,7 +38,12 @@ export default function Scoreboard() {
   const [show, setShow] = useState(false);
   const [clickedItem, setClickedItem] = useState({});
   const { register, handleSubmit, errors } = useForm();
+
   let decoded = { isAdmin: false };
+  if (localStorage.getItem("token")) {
+    decoded = jwtDecode(window.localStorage.getItem("token"));
+    console.log(decoded, "decode");
+  }
   const dataLoader = () => {
     getScoreboards().then((res) => {
       setData(res.data);
@@ -46,10 +51,6 @@ export default function Scoreboard() {
       console.log(res.data, "res dayta");
     });
   };
-  if (localStorage.getItem("token")) {
-    decoded = jwtDecode(window.localStorage.getItem("token"));
-    console.log(decoded, "decode");
-  }
 
   useEffect(() => {
     //Dont use async await in the components , use only in api.js
@@ -342,9 +343,11 @@ export default function Scoreboard() {
 
       <Grid fluid>
         <Row>
-          <button onClick={handleEdit} className="btn btn-info btn-fill">
-            Edit Scoreboard{" "}
-          </button>
+          {decoded.isAdmin && (
+            <button onClick={handleEdit} className="btn btn-info btn-fill">
+              Edit Scoreboard{" "}
+            </button>
+          )}
           {data.length ? (
             <Card
               title={data[0].name}

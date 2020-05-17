@@ -7,8 +7,6 @@ import { Modal, Button, Grid, Row, Col } from "react-bootstrap";
 
 import "react-toastify/dist/ReactToastify.css";
 const ViewMatchSummary = ({ showView, selectedMatch, handleCloseView }) => {
-  console.log(selectedMatch, "selected match");
-
   return (
     <Modal bsSize="lg" show={showView} onHide={handleCloseView}>
       <Modal.Header closeButton>

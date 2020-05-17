@@ -24,7 +24,23 @@ import Card from "components/Card/Card.jsx";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { useState } from "react";
-export default function Login() {
+import { connect } from "react-redux";
+import { toggleLogin } from "../redux/actions";
+// const mapStateToProps = (state) => {
+//   return { isLoggedIn: state.isLoggedIn };
+// };
+
+function mapDispatchToProps(dispatch) {
+  return {
+    toggleLogin: (article) => {
+      console.log(article, "artivlekrl");
+      dispatch(toggleLogin(article));
+    },
+  };
+}
+const ConnLogin = (props) => {
+  console.log(props.isLoggedIn, "is;logingngn");
+
   const { register, handleSubmit, errors } = useForm();
   const [redirect, setRedirect] = useState(false);
   const onSubmit = (data) => {
@@ -34,6 +50,7 @@ export default function Login() {
 
       if (res.data.token) {
         console.log("success");
+        props.toggleLogin(true);
         setRedirect(true);
         window.localStorage.setItem("token", res.data.token);
       } else toast.error(res.error);
@@ -101,4 +118,6 @@ export default function Login() {
         </Grid>
       </div>
     );
-}
+};
+const Login = connect(null, mapDispatchToProps)(ConnLogin);
+export default Login;
