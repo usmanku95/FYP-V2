@@ -92,3 +92,35 @@ export async function deleteEntry(id) {
     axios.delete(`/deleteEntry/${id}`).then((res) => res.data)
   );
 }
+
+//Player calls
+export async function addPlayer(data) {
+  return await resolve(axios.post("/addPlayer", data).then((res) => res.data));
+}
+
+export async function getPlayers() {
+  return await resolve(axios.get("/getPlayers").then((res) => res.data));
+}
+
+export async function updatePlayer(playerId, data) {
+  return await resolve(
+    axios.put(`/updatePlayer/${playerId}`, data).then((res) => res.data)
+  );
+}
+
+export async function deletePlayer(id) {
+  return await resolve(
+    axios.delete(`/deletePlayer/${id}`).then((res) => res.data)
+  );
+}
+
+//Scoreboard calls
+export async function getScoreboards() {
+  return await resolve(axios.get("/getScoreboards").then((res) => res.data));
+}
+
+export async function updateScoreboard(scoreboardId, data) {
+  return await resolve(
+    axios.put(`/updateScoreboard/${scoreboardId}`, data).then((res) => res.data)
+  );
+}
