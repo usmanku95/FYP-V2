@@ -23,12 +23,16 @@ import "react-table-6/react-table.css";
 import { useEffect, useState } from "react";
 import AddMatch from "./Modals/AddMatch";
 import EditMatch from "./Modals/EditMatch";
+
 import { toast } from "react-toastify";
+import ViewMatchSummary from "./Modals/ViewMatchSummary";
 
 export default function Matches(props) {
   const [data, setData] = useState([]);
   const [show, setShow] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
+  const [showView, setShowView] = useState(false);
+
   const [selectedMatch, setSelectedMatch] = useState({});
 
   const dataLoader = () => {
@@ -43,11 +47,19 @@ export default function Matches(props) {
   const handleAdd = () => {
     setShow(true);
   };
+  const handleView = (data) => {
+    console.log("view click");
+    setSelectedMatch(data);
+    setShowView(true);
+  };
   const handleClose = () => {
     setShow(false);
   };
   const handleCloseEdit = () => {
     setShowEdit(false);
+  };
+  const handleCloseView = () => {
+    setShowView(false);
   };
   const handleEdit = (data) => {
     setSelectedMatch(data);
@@ -68,7 +80,15 @@ export default function Matches(props) {
     {
       Header: "Name",
       accessor: "name",
-      Cell: (props) => <a href="/user/matchSummary/matchId">{props.value}</a>, // String-based value accessors!
+      Cell: (props) => (
+        <span
+          style={{ cursor: "pointer" }}
+          className="text-primary "
+          onClick={() => handleView(props.original)}
+        >
+          {props.value}
+        </span>
+      ), // String-based value accessors!
     },
     {
       Header: "Date",
@@ -108,6 +128,12 @@ export default function Matches(props) {
         eventId={props.match.params.id}
         setShow={setShow}
         handleClose={handleClose}
+      />
+      <ViewMatchSummary
+        showView={showView}
+        setShowView={setShowView}
+        selectedMatch={selectedMatch}
+        handleCloseView={handleCloseView}
       />
       <EditMatch
         dataLoader={dataLoader}

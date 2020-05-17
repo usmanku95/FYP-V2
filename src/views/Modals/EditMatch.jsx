@@ -32,7 +32,7 @@ const EditMatch = ({
     <Modal bsSize="lg" show={showEdit} onHide={handleCloseEdit}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Modal.Header closeButton>
-          <Modal.Title>Add Match Info.</Modal.Title>
+          <Modal.Title>Edit Match Info.</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Grid fluid>
