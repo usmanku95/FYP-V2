@@ -19,7 +19,7 @@ import Events from "views/Events";
 import Matches from "views/Matches";
 import MatchSummary from "views/MatchSummary";
 import Teams from "views/Teams";
-import TeamDetails from "views/TeamDetails";
+// import TeamDetails from "views/TeamDetails";
 import Schedule from "views/Schedule";
 import Scoreboard from "views/Scoreboard";
 import Register from "views/Register";
@@ -54,13 +54,13 @@ const dashboardRoutes = [
     name: "Teams",
     layout: "/user",
   },
-  {
-    path: "/teamDetails",
-    component: TeamDetails,
-    name: "Teams Detail",
-    hideSelf: true,
-    layout: "/user",
-  },
+  // {
+  //   path: "/teamDetails",
+  //   component: TeamDetails,
+  //   name: "Teams Detail",
+  //   hideSelf: true,
+  //   layout: "/user",
+  // },
   {
     path: "/schedule",
     component: Schedule,

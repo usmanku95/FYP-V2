@@ -195,7 +195,8 @@ export default function Register() {
                   <FormGroup controlId="formBasicText">
                     <ControlLabel>Email:</ControlLabel>
                     <input
-                      type=""
+                      type="email"
+                      required
                       defaultValue={clickedItem.email}
                       className="form-control"
                       name="email"
@@ -244,7 +245,7 @@ export default function Register() {
                   <FormGroup controlId="formBasicText">
                     <ControlLabel>Phone:</ControlLabel>
                     <input
-                      type=""
+                      type="number"
                       defaultValue={clickedItem.phone}
                       className="form-control"
                       name="phone"
@@ -252,6 +253,11 @@ export default function Register() {
                         required: {
                           value: true,
                           message: "This field is required.",
+                        },
+                        min: { value: 0, message: "minimum is 0." },
+                        maxLength: {
+                          value: 11,
+                          message: "Max length is 11.",
                         },
                       })}
                     />

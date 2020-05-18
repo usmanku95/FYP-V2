@@ -184,7 +184,7 @@ export default function Schedule() {
                   <FormGroup controlId="formBasicText">
                     <ControlLabel>Date:</ControlLabel>
                     <input
-                      type=""
+                      type="date"
                       defaultValue={clickedItem.date}
                       className="form-control"
                       name="date"
@@ -210,7 +210,7 @@ export default function Schedule() {
                   <FormGroup controlId="formBasicText">
                     <ControlLabel>Time:</ControlLabel>
                     <input
-                      type=""
+                      type="time"
                       defaultValue={clickedItem.time}
                       className="form-control"
                       name="time"

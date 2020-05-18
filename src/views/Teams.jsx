@@ -30,6 +30,8 @@ import ReactTable from "react-table-6";
 import "react-table-6/react-table.css";
 import jwtDecode from "jwt-decode";
 import AddTeamModal from "./Modals/AddTeamModal";
+import ViewTeamModal from "./Modals/ViewTeamModal";
+
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useForm } from "react-hook-form";
@@ -39,6 +41,8 @@ export default function Teams() {
   const [show, setShow] = useState(false);
 
   const [showAddTeam, setShowAdd] = useState(false);
+  const [showViewTeam, setShowView] = useState(false);
+
   const [clickedItem, setClickedItem] = useState({});
   const { register, handleSubmit, errors } = useForm();
 
@@ -50,6 +54,10 @@ export default function Teams() {
 
   const handleAdd = () => {
     setShowAdd(true);
+  };
+  const handleView = (data) => {
+    setClickedItem(data);
+    setShowView(true);
   };
   const handleEdit = (data) => {
     setClickedItem(data);
@@ -69,6 +77,9 @@ export default function Teams() {
   };
   const handleCloseAdd = () => {
     setShowAdd(false);
+  };
+  const handleCloseView = () => {
+    setShowView(false);
   };
   const handleClose = () => {
     setShow(false);
@@ -100,7 +111,14 @@ export default function Teams() {
     {
       Header: "Name",
       accessor: "name", // String-based value accessors!,
-      Cell: (props) => <a href="/user/matches/teamId">{props.value}</a>, // String-based value accessors!
+      Cell: (props) => (
+        <span
+          style={{ cursor: "pointer", color: "blue" }}
+          onClick={() => handleView(props.original)}
+        >
+          {props.value}
+        </span>
+      ), // String-based value accessors!
     },
 
     decoded.isAdmin
@@ -137,6 +155,13 @@ export default function Teams() {
         dataLoader={dataLoader}
         handleCloseAdd={handleCloseAdd}
       />
+      <ViewTeamModal
+        showViewTeam={showViewTeam}
+        setShowView={setShowView}
+        handleCloseView={handleCloseView}
+        clickedItem={clickedItem}
+      />
+
       <Modal show={show} onHide={handleClose}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Modal.Header closeButton>

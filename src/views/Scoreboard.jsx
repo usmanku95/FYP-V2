@@ -111,30 +111,6 @@ export default function Scoreboard() {
                     <FormControl.Feedback />
                   </FormGroup>
                 </Col>
-                {/* <Col md={6}>
-                  {" "}
-                  <FormGroup controlId="formBasicText">
-                    <ControlLabel>Date:</ControlLabel>
-                    <input
-                      type="date"
-                      defaultValue={clickedItem.date}
-                      className="form-control"
-                      name="date"
-                      ref={register({
-                        required: {
-                          value: true,
-                          message: "This field is required.",
-                        },
-                      })}
-                    />
-                    {errors.date && (
-                      <span style={{ color: "red" }}>
-                        {errors.date.message}
-                      </span>
-                    )}
-                    <FormControl.Feedback />
-                  </FormGroup>
-                </Col> */}
               </Row>
               <Row>
                 <Col md={6}>
@@ -242,7 +218,8 @@ export default function Scoreboard() {
                   <FormGroup controlId="formBasicText">
                     <ControlLabel>Team 1 Overs:</ControlLabel>
                     <input
-                      type=""
+                      type="number"
+                      required
                       defaultValue={clickedItem.team1Overs}
                       className="form-control"
                       name="team1Overs"
@@ -270,7 +247,8 @@ export default function Scoreboard() {
                   <FormGroup controlId="formBasicText">
                     <ControlLabel>Team 2 Overs:</ControlLabel>
                     <input
-                      type=""
+                      type="number"
+                      required
                       defaultValue={clickedItem.team2Overs}
                       className="form-control"
                       name="team2Overs"

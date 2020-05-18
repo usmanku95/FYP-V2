@@ -31,8 +31,6 @@ import "./assets/css/pe-icon-7-stroke.css";
 import UserLayout from "layouts/User.jsx";
 import { ToastContainer } from "react-toastify";
 import { addArticle } from "./redux/actions";
-window.store = store;
-window.addArticle = addArticle();
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>

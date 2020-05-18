@@ -66,7 +66,7 @@ const AddEntryModal = ({
                 <FormGroup controlId="formBasicText">
                   <ControlLabel>Date:</ControlLabel>
                   <input
-                    type=""
+                    type="date"
                     className="form-control"
                     name="date"
                     ref={register({
@@ -89,7 +89,7 @@ const AddEntryModal = ({
                 <FormGroup controlId="formBasicText">
                   <ControlLabel>Time:</ControlLabel>
                   <input
-                    type=""
+                    type="time"
                     className="form-control"
                     name="time"
                     ref={register({

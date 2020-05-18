@@ -66,7 +66,8 @@ const AddPlayerModal = ({
                 <FormGroup controlId="formBasicText">
                   <ControlLabel>Email:</ControlLabel>
                   <input
-                    type=""
+                    type="email"
+                    required
                     className="form-control"
                     name="email"
                     ref={register({
@@ -109,7 +110,9 @@ const AddPlayerModal = ({
                 <FormGroup controlId="formBasicText">
                   <ControlLabel>Phone:</ControlLabel>
                   <input
-                    type=""
+                    type="number"
+                    min="0"
+                    maxLength="11"
                     className="form-control"
                     name="phone"
                     ref={register({
