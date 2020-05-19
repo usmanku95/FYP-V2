@@ -184,6 +184,9 @@ export default function Teams() {
                           value: true,
                           message: "This field is required.",
                         },
+                        validate: (value) =>
+                          value.trim() !== "" ||
+                          "White spaces are not allowed.",
                       })}
                     />
                     {errors.name && (
@@ -208,6 +211,9 @@ export default function Teams() {
                           value: true,
                           message: "This field is required.",
                         },
+                        validate: (value) =>
+                          value.trim() !== "" ||
+                          "White spaces are not allowed.",
                       })}
                     />
                     {errors.player1 && (
@@ -234,6 +240,9 @@ export default function Teams() {
                           value: true,
                           message: "This field is required.",
                         },
+                        validate: (value) =>
+                          value.trim() !== "" ||
+                          "White spaces are not allowed.",
                       })}
                     />
                     {errors.player2 && (
@@ -257,6 +266,9 @@ export default function Teams() {
                           value: true,
                           message: "This field is required.",
                         },
+                        validate: (value) =>
+                          value.trim() !== "" ||
+                          "White spaces are not allowed.",
                       })}
                     />
                     {errors.player3 && (
@@ -283,6 +295,9 @@ export default function Teams() {
                           value: true,
                           message: "This field is required.",
                         },
+                        validate: (value) =>
+                          value.trim() !== "" ||
+                          "White spaces are not allowed.",
                       })}
                     />
                     {errors.player4 && (
@@ -306,6 +321,9 @@ export default function Teams() {
                           value: true,
                           message: "This field is required.",
                         },
+                        validate: (value) =>
+                          value.trim() !== "" ||
+                          "White spaces are not allowed.",
                       })}
                     />
                     {errors.player5 && (
@@ -332,6 +350,9 @@ export default function Teams() {
                           value: true,
                           message: "This field is required.",
                         },
+                        validate: (value) =>
+                          value.trim() !== "" ||
+                          "White spaces are not allowed.",
                         min: { value: 0, message: "minimum is 0." },
                         maxLength: {
                           value: 11,
@@ -360,6 +381,9 @@ export default function Teams() {
                           value: true,
                           message: "This field is required.",
                         },
+                        validate: (value) =>
+                          value.trim() !== "" ||
+                          "White spaces are not allowed.",
                         min: { value: 0, message: "minimum is 0." },
                         maxLength: {
                           value: 11,
@@ -390,6 +414,9 @@ export default function Teams() {
                           value: true,
                           message: "This field is required.",
                         },
+                        validate: (value) =>
+                          value.trim() !== "" ||
+                          "White spaces are not allowed.",
                       })}
                     />
                     {errors.player8 && (
@@ -413,6 +440,9 @@ export default function Teams() {
                           value: true,
                           message: "This field is required.",
                         },
+                        validate: (value) =>
+                          value.trim() !== "" ||
+                          "White spaces are not allowed.",
                       })}
                     />
                     {errors.player9 && (
@@ -438,6 +468,9 @@ export default function Teams() {
                           value: true,
                           message: "This field is required.",
                         },
+                        validate: (value) =>
+                          value.trim() !== "" ||
+                          "White spaces are not allowed.",
                       })}
                     />
                     {errors.player10 && (
@@ -461,6 +494,9 @@ export default function Teams() {
                           value: true,
                           message: "This field is required.",
                         },
+                        validate: (value) =>
+                          value.trim() !== "" ||
+                          "White spaces are not allowed.",
                       })}
                     />
                     {errors.player11 && (
@@ -486,6 +522,9 @@ export default function Teams() {
                           value: true,
                           message: "This field is required.",
                         },
+                        validate: (value) =>
+                          value.trim() !== "" ||
+                          "White spaces are not allowed.",
                       })}
                     />
                     {errors.player12 && (

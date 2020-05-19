@@ -51,6 +51,8 @@ const EditMatch = ({
                         value: true,
                         message: "This field is required.",
                       },
+                      validate: (value) =>
+                        value.trim() !== "" || "White spaces are not allowed.",
                     })}
                   />
                   {errors.name && (
@@ -97,6 +99,8 @@ const EditMatch = ({
                         value: true,
                         message: "This field is required.",
                       },
+                      validate: (value) =>
+                        value.trim() !== "" || "White spaces are not allowed.",
                     })}
                   />
                   {errors.team1 && (
@@ -118,6 +122,8 @@ const EditMatch = ({
                         value: true,
                         message: "This field is required.",
                       },
+                      validate: (value) =>
+                        value.trim() !== "" || "White spaces are not allowed.",
                     })}
                   />
                   {errors.team2 && (
@@ -143,6 +149,8 @@ const EditMatch = ({
                         value: true,
                         message: "This field is required.",
                       },
+                      validate: (value) =>
+                        value.trim() !== "" || "White spaces are not allowed.",
                     })}
                   />
                   {errors.team1Score && (
@@ -167,6 +175,8 @@ const EditMatch = ({
                         value: true,
                         message: "This field is required.",
                       },
+                      validate: (value) =>
+                        value.trim() !== "" || "White spaces are not allowed.",
                     })}
                   />
                   {errors.team2Score && (
@@ -251,6 +261,8 @@ const EditMatch = ({
                         value: true,
                         message: "This field is required.",
                       },
+                      validate: (value) =>
+                        value.trim() !== "" || "White spaces are not allowed.",
                     })}
                   />
                   {errors.result && (

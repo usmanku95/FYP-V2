@@ -53,6 +53,8 @@ const AddPlayerModal = ({
                         value: true,
                         message: "This field is required.",
                       },
+                      validate: (value) =>
+                        value.trim() !== "" || "White spaces are not allowed.",
                     })}
                   />
                   {errors.name && (
@@ -98,6 +100,8 @@ const AddPlayerModal = ({
                         value: true,
                         message: "This field is required.",
                       },
+                      validate: (value) =>
+                        value.trim() !== "" || "White spaces are not allowed.",
                     })}
                   />
                   {errors.regNo && (
@@ -142,6 +146,8 @@ const AddPlayerModal = ({
                         value: true,
                         message: "This field is required.",
                       },
+                      validate: (value) =>
+                        value.trim() !== "" || "White spaces are not allowed.",
                     })}
                   />
                   {errors.faculty && (

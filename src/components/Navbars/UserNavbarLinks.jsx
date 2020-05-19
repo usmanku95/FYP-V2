@@ -57,14 +57,15 @@ const ConnUserNavbarLinks = (props) => {
     return (
       <div>
         <Nav pullRight>
-          {props.isLoggedIn ? (
+          {props.isLoggedIn && (
             <NavItem eventKey={3} onClick={handleLogout} href="/user/login">
               Log out
             </NavItem>
-          ) : (
-            <NavItem eventKey={3} href="#">
-              Admin Log in
-            </NavItem>
+            // ) : (
+            //   <NavItem eventKey={3} href="#">
+            //     Admin Log in
+            //   </NavItem>
+            //
           )}
         </Nav>
       </div>

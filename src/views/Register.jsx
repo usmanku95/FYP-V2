@@ -180,6 +180,9 @@ export default function Register() {
                           value: true,
                           message: "This field is required.",
                         },
+                        validate: (value) =>
+                          value.trim() !== "" ||
+                          "White spaces are not allowed.",
                       })}
                     />
                     {errors.name && (
@@ -231,6 +234,9 @@ export default function Register() {
                           value: true,
                           message: "This field is required.",
                         },
+                        validate: (value) =>
+                          value.trim() !== "" ||
+                          "White spaces are not allowed.",
                       })}
                     />
                     {errors.regNo && (
@@ -284,6 +290,9 @@ export default function Register() {
                           value: true,
                           message: "This field is required.",
                         },
+                        validate: (value) =>
+                          value.trim() !== "" ||
+                          "White spaces are not allowed.",
                       })}
                     />
                     {errors.faculty && (

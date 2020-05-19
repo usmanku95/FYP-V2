@@ -101,6 +101,9 @@ export default function Scoreboard() {
                           value: true,
                           message: "This field is required.",
                         },
+                        validate: (value) =>
+                          value.trim() !== "" ||
+                          "White spaces are not allowed.",
                       })}
                     />
                     {errors.name && (
@@ -127,6 +130,9 @@ export default function Scoreboard() {
                           value: true,
                           message: "This field is required.",
                         },
+                        validate: (value) =>
+                          value.trim() !== "" ||
+                          "White spaces are not allowed.",
                       })}
                     />
                     {errors.team1 && (
@@ -150,6 +156,9 @@ export default function Scoreboard() {
                           value: true,
                           message: "This field is required.",
                         },
+                        validate: (value) =>
+                          value.trim() !== "" ||
+                          "White spaces are not allowed.",
                       })}
                     />
                     {errors.team2 && (
@@ -177,6 +186,9 @@ export default function Scoreboard() {
                           value: true,
                           message: "This field is required.",
                         },
+                        validate: (value) =>
+                          value.trim() !== "" ||
+                          "White spaces are not allowed.",
                       })}
                     />
                     {errors.team1Score && (
@@ -201,6 +213,9 @@ export default function Scoreboard() {
                           value: true,
                           message: "This field is required.",
                         },
+                        validate: (value) =>
+                          value.trim() !== "" ||
+                          "White spaces are not allowed.",
                       })}
                     />
                     {errors.team2Score && (
@@ -287,6 +302,9 @@ export default function Scoreboard() {
                           value: true,
                           message: "This field is required.",
                         },
+                        validate: (value) =>
+                          value.trim() !== "" ||
+                          "White spaces are not allowed.",
                       })}
                     />
                     {errors.result && (

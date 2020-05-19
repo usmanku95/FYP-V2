@@ -45,6 +45,8 @@ const AddMatch = ({ show, handleClose, setShow, eventId, dataLoader }) => {
                         value: true,
                         message: "This field is required.",
                       },
+                      validate: (value) =>
+                        value.trim() !== "" || "White spaces are not allowed.",
                     })}
                   />
                   {errors.name && (
@@ -66,6 +68,8 @@ const AddMatch = ({ show, handleClose, setShow, eventId, dataLoader }) => {
                         value: true,
                         message: "This field is required.",
                       },
+                      validate: (value) =>
+                        value.trim() !== "" || "White spaces are not allowed.",
                     })}
                   />
                   {errors.date && (
@@ -89,6 +93,8 @@ const AddMatch = ({ show, handleClose, setShow, eventId, dataLoader }) => {
                         value: true,
                         message: "This field is required.",
                       },
+                      validate: (value) =>
+                        value.trim() !== "" || "White spaces are not allowed.",
                     })}
                   />
                   {errors.team1 && (
@@ -109,6 +115,8 @@ const AddMatch = ({ show, handleClose, setShow, eventId, dataLoader }) => {
                         value: true,
                         message: "This field is required.",
                       },
+                      validate: (value) =>
+                        value.trim() !== "" || "White spaces are not allowed.",
                     })}
                   />
                   {errors.team2 && (
@@ -133,6 +141,8 @@ const AddMatch = ({ show, handleClose, setShow, eventId, dataLoader }) => {
                         value: true,
                         message: "This field is required.",
                       },
+                      validate: (value) =>
+                        value.trim() !== "" || "White spaces are not allowed.",
                     })}
                   />
                   {errors.team1Score && (
@@ -156,6 +166,8 @@ const AddMatch = ({ show, handleClose, setShow, eventId, dataLoader }) => {
                         value: true,
                         message: "This field is required.",
                       },
+                      validate: (value) =>
+                        value.trim() !== "" || "White spaces are not allowed.",
                     })}
                   />
                   {errors.team2Score && (
@@ -181,6 +193,8 @@ const AddMatch = ({ show, handleClose, setShow, eventId, dataLoader }) => {
                         value: true,
                         message: "This field is required.",
                       },
+                      validate: (value) =>
+                        value.trim() !== "" || "White spaces are not allowed.",
                       min: { value: 0, message: "minimum is 0." },
                       maxLength: {
                         value: 11,
@@ -208,6 +222,8 @@ const AddMatch = ({ show, handleClose, setShow, eventId, dataLoader }) => {
                         value: true,
                         message: "This field is required.",
                       },
+                      validate: (value) =>
+                        value.trim() !== "" || "White spaces are not allowed.",
                       min: { value: 0, message: "minimum is 0." },
                       maxLength: {
                         value: 11,
@@ -237,6 +253,8 @@ const AddMatch = ({ show, handleClose, setShow, eventId, dataLoader }) => {
                         value: true,
                         message: "This field is required.",
                       },
+                      validate: (value) =>
+                        value.trim() !== "" || "White spaces are not allowed.",
                     })}
                   />
                   {errors.result && (

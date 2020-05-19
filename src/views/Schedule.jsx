@@ -169,6 +169,9 @@ export default function Schedule() {
                           value: true,
                           message: "This field is required.",
                         },
+                        validate: (value) =>
+                          value.trim() !== "" ||
+                          "White spaces are not allowed.",
                       })}
                     />
                     {errors.name && (
@@ -242,6 +245,9 @@ export default function Schedule() {
                           value: true,
                           message: "This field is required.",
                         },
+                        validate: (value) =>
+                          value.trim() !== "" ||
+                          "White spaces are not allowed.",
                       })}
                     />
                     {errors.venue && (

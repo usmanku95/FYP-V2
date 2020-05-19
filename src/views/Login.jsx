@@ -46,14 +46,11 @@ const ConnLogin = (props) => {
   const onSubmit = (data) => {
     console.log(data);
     login(data).then((res) => {
-      console.log(res.data, "res");
-
       if (res.data.token) {
-        console.log("success");
         props.toggleLogin(true);
         setRedirect(true);
         window.localStorage.setItem("token", res.data.token);
-      } else toast.error(res.error);
+      } else toast.error("Wrong mail or password." || res.error);
     });
   };
   if (redirect) {

@@ -38,6 +38,8 @@ const AddModal = ({ showAdd, dataLoader, handleCloseAdd, setShowAdd }) => {
                   value: true,
                   message: "This field is required.",
                 },
+                validate: (value) =>
+                  value.trim() !== "" || "White spaces are not allowed.",
               })}
             />
             {errors.name && (
@@ -62,6 +64,8 @@ const AddModal = ({ showAdd, dataLoader, handleCloseAdd, setShowAdd }) => {
                   value: 11,
                   message: "Max length is 11.",
                 },
+                validate: (value) =>
+                  value.trim() !== "" || "White spaces are not allowed.",
               })}
             />
             {errors.year && (

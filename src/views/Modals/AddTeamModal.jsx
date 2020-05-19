@@ -53,6 +53,8 @@ const AddTeamModal = ({
                         value: true,
                         message: "This field is required.",
                       },
+                      validate: (value) =>
+                        value.trim() !== "" || "White spaces are not allowed.",
                     })}
                   />
                   {errors.name && (
@@ -74,6 +76,8 @@ const AddTeamModal = ({
                         value: true,
                         message: "This field is required.",
                       },
+                      validate: (value) =>
+                        value.trim() !== "" || "White spaces are not allowed.",
                     })}
                   />
                   {errors.player1 && (
@@ -99,6 +103,8 @@ const AddTeamModal = ({
                         value: true,
                         message: "This field is required.",
                       },
+                      validate: (value) =>
+                        value.trim() !== "" || "White spaces are not allowed.",
                     })}
                   />
                   {errors.player2 && (
@@ -121,6 +127,8 @@ const AddTeamModal = ({
                         value: true,
                         message: "This field is required.",
                       },
+                      validate: (value) =>
+                        value.trim() !== "" || "White spaces are not allowed.",
                     })}
                   />
                   {errors.player3 && (
@@ -146,6 +154,8 @@ const AddTeamModal = ({
                         value: true,
                         message: "This field is required.",
                       },
+                      validate: (value) =>
+                        value.trim() !== "" || "White spaces are not allowed.",
                     })}
                   />
                   {errors.player4 && (
@@ -168,6 +178,8 @@ const AddTeamModal = ({
                         value: true,
                         message: "This field is required.",
                       },
+                      validate: (value) =>
+                        value.trim() !== "" || "White spaces are not allowed.",
                     })}
                   />
                   {errors.player5 && (
@@ -193,6 +205,8 @@ const AddTeamModal = ({
                         value: true,
                         message: "This field is required.",
                       },
+                      validate: (value) =>
+                        value.trim() !== "" || "White spaces are not allowed.",
                       min: { value: 0, message: "minimum is 0." },
                       maxLength: {
                         value: 11,
@@ -220,6 +234,8 @@ const AddTeamModal = ({
                         value: true,
                         message: "This field is required.",
                       },
+                      validate: (value) =>
+                        value.trim() !== "" || "White spaces are not allowed.",
                       min: { value: 0, message: "minimum is 0." },
                       maxLength: {
                         value: 11,
@@ -249,6 +265,8 @@ const AddTeamModal = ({
                         value: true,
                         message: "This field is required.",
                       },
+                      validate: (value) =>
+                        value.trim() !== "" || "White spaces are not allowed.",
                     })}
                   />
                   {errors.player8 && (
@@ -271,6 +289,8 @@ const AddTeamModal = ({
                         value: true,
                         message: "This field is required.",
                       },
+                      validate: (value) =>
+                        value.trim() !== "" || "White spaces are not allowed.",
                     })}
                   />
                   {errors.player9 && (
@@ -295,6 +315,8 @@ const AddTeamModal = ({
                         value: true,
                         message: "This field is required.",
                       },
+                      validate: (value) =>
+                        value.trim() !== "" || "White spaces are not allowed.",
                     })}
                   />
                   {errors.player10 && (
@@ -317,6 +339,8 @@ const AddTeamModal = ({
                         value: true,
                         message: "This field is required.",
                       },
+                      validate: (value) =>
+                        value.trim() !== "" || "White spaces are not allowed.",
                     })}
                   />
                   {errors.player11 && (
@@ -341,6 +365,8 @@ const AddTeamModal = ({
                         value: true,
                         message: "This field is required.",
                       },
+                      validate: (value) =>
+                        value.trim() !== "" || "White spaces are not allowed.",
                     })}
                   />
                   {errors.player12 && (

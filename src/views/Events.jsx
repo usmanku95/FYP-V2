@@ -161,6 +161,8 @@ export default function Events() {
                     value: true,
                     message: "This field is required.",
                   },
+                  validate: (value) =>
+                    value.trim() !== "" || "White spaces are not allowed.",
                 })}
               />
               {errors.name && (
@@ -186,6 +188,8 @@ export default function Events() {
                     value: 11,
                     message: "Max length is 11.",
                   },
+                  validate: (value) =>
+                    value.trim() !== "" || "White spaces are not allowed.",
                 })}
               />
               {errors.year && (
