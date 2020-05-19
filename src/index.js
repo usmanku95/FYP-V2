@@ -18,7 +18,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import store from "./redux/store";
+import { PersistGate } from "redux-persist/integration/react";
+import { store, persistor } from "./redux/store";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -33,16 +34,18 @@ import { ToastContainer } from "react-toastify";
 import { addArticle } from "./redux/actions";
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
-      <ToastContainer />
+    <PersistGate loading={null} persistor={persistor}>
+      <BrowserRouter>
+        <ToastContainer />
 
-      <Switch>
-        {/* <Route path="/admin" render={(props) => <AdminLayout {...props} />} /> */}
-        <Route path="/user" render={(props) => <UserLayout {...props} />} />
+        <Switch>
+          {/* <Route path="/admin" render={(props) => <AdminLayout {...props} />} /> */}
+          <Route path="/user" render={(props) => <UserLayout {...props} />} />
 
-        <Redirect from="/" to="/user/events" />
-      </Switch>
-    </BrowserRouter>
+          <Redirect from="/" to="/user/events" />
+        </Switch>
+      </BrowserRouter>
+    </PersistGate>
   </Provider>,
   document.getElementById("root")
 );

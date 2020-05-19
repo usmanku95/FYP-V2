@@ -22,7 +22,8 @@
     "react-table-6": "^6.11.0",
     "react-toastify": "^6.0.4",
     "react-toggle": "4.0.2",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "redux-persist": "^6.0.0"
   },
   "devDependencies": {
     "@types/googlemaps": "3.30.19",
